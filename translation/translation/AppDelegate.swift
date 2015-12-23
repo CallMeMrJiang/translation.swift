@@ -13,9 +13,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+    
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = UIColor.whiteColor()
+        
+        let tabBarController = TITabBarController()
+        
+        let taskVC = MyTasksViewController()
+        taskVC.title = "我的任务"
+        let taskNC = UINavigationController(rootViewController: taskVC);
+        
+        
+        let projVC = ProjectViewController()
+        projVC.title = "项目"
+        let projNC = UINavigationController(rootViewController: projVC);
+        
+        let personalVC = PersonalViewController()
+        let personalNC = UINavigationController(rootViewController: personalVC);
+        
+        tabBarController.viewControllers = [taskNC, projNC, personalNC]
+        self.window?.rootViewController = tabBarController
+        
+        
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
